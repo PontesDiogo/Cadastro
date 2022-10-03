@@ -1,0 +1,45 @@
+<div>
+<div class="mb-3">
+    <label for="MatriculaCad" class="form-label">Matricula</label>
+    <input type="number" class="form-control" id="matricula" aria-describedby="emailHelp" placeholder="exp:123456789">
+</div>    
+<div class="mb-3">
+    <label for="email" class="form-label">Endereco email</label>
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="exp: admin@gmail.com">
+</div>
+<div class="mb-3">
+    <label for="password" class="form-label">Senha</label>
+    <input type="password" class="form-control" id="password" placeholder="exp: 232323">
+</div>
+<div class="mb-3">
+    <label for="nome" class="form-label">Nome</label>
+    <input type="text" id="nome" placeholder="exp: João Augusto">
+</div>
+<div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="checkmark">Lembre de mim</label>
+</div>
+<button type="submit" class="btn btn-primary" id="enviar">Enviar</button>
+</div>
+
+<script src="../../js/jquery-3.6.1.min.js"></script>
+<script>
+    $("#enviar").click(()=>{cadastrarAluno($('#matricula').val(),$('#email').val(),$('#password').val(), $('#nome').val())})
+
+    function cadastrarAluno(matricula,email,senha,nome){
+            var objectJson = {
+                "acao": "cadastrar",
+                "matricula":"",
+                "email":"",
+                "senha":"",
+                "nome":""
+            };
+            console.log(objectJson);
+            var stringJson = JSON.stringify(objectJson); 
+            console.log(stringJson);
+
+            $.post("controller/administrador.php/",stringJson,function(resposta){ 
+                console.log(resposta);
+            });
+        }
+</script>
